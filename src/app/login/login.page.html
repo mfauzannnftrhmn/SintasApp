@@ -1,0 +1,57 @@
+<ion-content [fullscreen]="true" class="login-content">
+  <div class="login-container">
+    
+    <!-- Top Section with Logo -->
+    <div class="logo-section">
+      <div class="logo-wrapper">
+        <img src="assets/icon/logo.png" alt="PT Sintas Kurama Perdana Logo" class="logo-image" />
+      </div>
+    </div>
+
+    <!-- Bottom Section with Login Form -->
+    <div class="login-section">
+      <h1 class="login-title">Login</h1>
+      
+      <form class="login-form" (ngSubmit)="onLogin()">
+        <!-- Phone Number Input -->
+        <div class="input-wrapper">
+          <ion-icon name="person-outline" class="input-icon"></ion-icon>
+          <ion-input
+            type="tel"
+            [(ngModel)]="phoneNumber"
+            name="phoneNumber"
+            placeholder="No Handphone"
+            class="login-input"
+            required>
+          </ion-input>
+        </div>
+
+        <!-- Password Input -->
+        <div class="input-wrapper">
+          <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+          <ion-input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Masukkan Password Anda"
+            class="login-input"
+            required>
+          </ion-input>
+        </div>
+
+        <!-- Forgot Password Link -->
+        <div class="forgot-password-wrapper">
+          <a href="#" class="forgot-password-link" (click)="onForgotPassword($event)">
+            Lupa password?
+          </a>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="login-button" [disabled]="!isFormValid()">
+          Login
+        </button>
+      </form>
+    </div>
+
+  </div>
+</ion-content>

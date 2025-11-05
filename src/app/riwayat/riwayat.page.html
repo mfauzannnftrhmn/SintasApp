@@ -1,0 +1,87 @@
+<ion-content [fullscreen]="true" class="riwayat-content">
+  <div class="main-container">
+    
+    <!-- Header Section -->
+    <div class="header-section">
+      <button class="back-btn" (click)="goToHome()" aria-label="Kembali">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      <h1 class="page-title">Riwayat Absen</h1>
+      <div class="header-spacer"></div>
+    </div>
+
+    <!-- Month Navigation -->
+    <div class="month-navigation">
+      <button class="month-nav-btn" (click)="previousMonth()" aria-label="Bulan sebelumnya">
+        <ion-icon name="chevron-back"></ion-icon>
+      </button>
+      <div class="month-display">
+        <span class="month-text">{{ getMonthName(currentMonth, currentYear) }}</span>
+      </div>
+      <button class="month-nav-btn" (click)="nextMonth()" aria-label="Bulan berikutnya">
+        <ion-icon name="chevron-forward"></ion-icon>
+      </button>
+    </div>
+
+    <!-- Attendance List -->
+    <div class="attendance-list-container">
+      <div class="attendance-list" *ngIf="filteredAttendance.length > 0; else noAttendance">
+        <div class="attendance-item" *ngFor="let attendance of filteredAttendance">
+          <div class="attendance-date">
+            <span>{{ formatAttendanceDate(attendance.date) }}</span>
+          </div>
+          <div class="attendance-times">
+            <div class="time-block time-block-checkin">
+              <div class="time-icon-box">
+                <ion-icon name="log-in-outline" class="time-icon-white"></ion-icon>
+              </div>
+              <div class="time-block-content">
+                <div class="time-label">Jam Masuk</div>
+                <div class="time-value-large">{{ formatAttendanceTime(attendance.checkIn) }}</div>
+              </div>
+            </div>
+            <div class="time-block time-block-checkout">
+              <div class="time-icon-box">
+                <ion-icon name="log-out-outline" class="time-icon-white"></ion-icon>
+              </div>
+              <div class="time-block-content">
+                <div class="time-label">Jam Pulang</div>
+                <div class="time-value-large">{{ formatAttendanceTime(attendance.checkOut) }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noAttendance>
+        <div class="no-attendance">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <p>Belum ada data absensi untuk bulan ini</p>
+        </div>
+      </ng-template>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Navigasi bawah">
+    <button class="nav-btn" aria-label="Beranda" routerLink="/home">
+      <ion-icon name="home-outline"></ion-icon>
+    </button>
+    <button routerLink="/notifikasi" class="nav-btn" aria-label="Notifikasi">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </button>
+    <button class="nav-btn-fingerprint" 
+            aria-label="Absen dengan sidik jari"
+            (click)="goToHome()"
+            [disabled]="false">
+      <ion-icon name="finger-print"></ion-icon>
+    </button>
+    <button routerLink="/riwayat" class="nav-btn active" aria-label="Riwayat">
+      <ion-icon name="time"></ion-icon>
+    </button>
+    <button routerLink="/profil" class="nav-btn" aria-label="Profil">
+      <ion-icon name="person-outline"></ion-icon>
+    </button>
+  </nav>
+
+</ion-content>

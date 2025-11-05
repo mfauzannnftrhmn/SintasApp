@@ -1,0 +1,131 @@
+<ion-content [fullscreen]="true" class="lembur-content">
+  <div class="main-container">
+    
+    <!-- Header Section -->
+    <div class="header-section">
+      <button class="back-btn" (click)="goBack()" aria-label="Kembali">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      <div class="header-title">Lembur</div>
+    </div>
+
+    <!-- Subtitle -->
+    <div class="subtitle-section">
+      <h2 class="subtitle">Ajukan Lembur</h2>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card">
+      <form (ngSubmit)="onSubmit()" class="lembur-form">
+        
+        <!-- Tanggal Input -->
+        <div class="form-group">
+          <label class="form-label">Tanggal</label>
+          <div class="input-field date-display" (click)="openDatePicker()">
+            <span *ngIf="selectedDate; else datePlaceholder">{{ formatDate(selectedDate) }}</span>
+            <ng-template #datePlaceholder>
+              <span class="placeholder-text">Pilih Tanggal</span>
+            </ng-template>
+            <ion-icon name="calendar-outline" class="field-icon"></ion-icon>
+          </div>
+          <input 
+            type="date" 
+            [(ngModel)]="selectedDate"
+            name="date"
+            [min]="minDate"
+            [max]="maxDate"
+            class="date-input-hidden"
+            #dateInput
+            aria-label="Pilih Tanggal">
+        </div>
+
+        <!-- Jam Mulai Input -->
+        <div class="form-group">
+          <label class="form-label">Jam Mulai</label>
+          <div class="input-field" (click)="openTimePicker()">
+            <span *ngIf="startTime; else timePlaceholder">{{ startTime }}</span>
+            <ng-template #timePlaceholder>
+              <span class="placeholder-text">Pilih Jam</span>
+            </ng-template>
+            <ion-icon name="time-outline" class="field-icon"></ion-icon>
+          </div>
+          <input 
+            type="time" 
+            [(ngModel)]="startTime"
+            name="startTime"
+            class="time-input-hidden"
+            #timeInput
+            aria-label="Pilih Jam Mulai">
+        </div>
+
+        <!-- Alasan Lembur Textarea -->
+        <div class="form-group">
+          <label class="form-label">Alasan Lembur</label>
+          <div class="textarea-wrapper">
+            <ion-textarea
+              [(ngModel)]="reason"
+              name="reason"
+              placeholder="Masukkan alasan lembur"
+              rows="4"
+              class="reason-textarea"
+              required>
+            </ion-textarea>
+          </div>
+        </div>
+
+        <!-- Upload Bukti Surat -->
+        <div class="form-group">
+          <label class="form-label">Upload Bukti Surat <span class="required-star">*</span></label>
+          <div class="upload-section">
+            <button type="button" class="upload-btn" (click)="triggerFileUpload()">
+              <ion-icon name="attach-outline" class="upload-icon"></ion-icon>
+              <span *ngIf="!proofFile; else fileName">
+                Upload Bukti Surat
+              </span>
+              <ng-template #fileName>
+                <span>{{ proofFile?.name }}</span>
+              </ng-template>
+            </button>
+            <input 
+              type="file" 
+              #fileInput 
+              (change)="onFileSelected($event)" 
+              accept=".pdf,.jpg,.jpeg,.png"
+              class="file-input-hidden"
+              aria-label="Upload Bukti Surat">
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn" [disabled]="!isFormValid()">
+          Ajukan Lembur
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Navigasi bawah">
+    <button class="nav-btn" aria-label="Beranda" routerLink="/home">
+      <ion-icon name="home-outline"></ion-icon>
+    </button>
+    <button routerLink="/notifikasi" class="nav-btn" aria-label="Notifikasi">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </button>
+    <button class="nav-btn-fingerprint" 
+            aria-label="Absen dengan sidik jari"
+            (click)="goToHome()"
+            [disabled]="false">
+      <ion-icon name="finger-print"></ion-icon>
+    </button>
+    <button routerLink="/riwayat" class="nav-btn" aria-label="Riwayat">
+      <ion-icon name="time-outline"></ion-icon>
+    </button>
+    <button routerLink="/profil" class="nav-btn" aria-label="Profil">
+      <ion-icon name="person-outline"></ion-icon>
+    </button>
+  </nav>
+
+</ion-content>

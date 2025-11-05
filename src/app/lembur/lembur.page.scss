@@ -1,0 +1,365 @@
+.lembur-content {
+  --background: linear-gradient(180deg, #72AB72 30%, #C8FFC8 100%);
+}
+
+/* Concave Curved Header Background - Using bg.svg */
+.lembur-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background-image: url('/assets/images/bg.svg');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.main-container {
+  padding: 0;
+  padding-bottom: 100px;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header Section */
+.header-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 16px 20px 16px;
+  margin-bottom: 0;
+  z-index: 1;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.back-btn ion-icon {
+  font-size: 24px;
+  color: #C8FFC8;
+}
+
+.header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  z-index: 2;
+}
+
+/* Subtitle Section */
+.subtitle-section {
+  padding: 0 16px 20px 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #32642D;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* Form Card */
+.form-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 24px;
+  margin: 0 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 1;
+}
+
+.lembur-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #32642D;
+  margin-bottom: 4px;
+}
+
+.required-star {
+  color: #e74c3c;
+  margin-left: 2px;
+}
+
+/* Input Field */
+.input-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F2F2F2;
+  border: 1px solid #D9D9D9;
+  border-radius: 12px;
+  padding: 14px 16px;
+  min-height: 48px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.input-field:active {
+  border-color: #32642D;
+  background: #ffffff;
+}
+
+.date-display {
+  font-size: 16px;
+  color: #2d3436;
+}
+
+.placeholder-text {
+  color: #b2bec3;
+  font-size: 16px;
+}
+
+.field-icon {
+  font-size: 20px;
+  color: #32642D;
+  flex-shrink: 0;
+}
+
+/* Textarea */
+.textarea-wrapper {
+  background: #F2F2F2;
+  border: 1px solid #D9D9D9;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.reason-textarea {
+  --background: transparent;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  font-size: 16px;
+  color: #2d3436;
+  --placeholder-color: #b2bec3;
+  --placeholder-opacity: 1;
+  min-height: 100px;
+}
+
+/* Upload Section */
+.upload-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.upload-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #F2F2F2;
+  border: 1px solid #D9D9D9;
+  border-radius: 12px;
+  padding: 14px 16px;
+  min-height: 48px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  font-size: 16px;
+  font-weight: 500;
+  color: #32642D;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.upload-btn:active {
+  border-color: #32642D;
+  background: #ffffff;
+}
+
+.upload-icon {
+  font-size: 20px;
+  color: #32642D;
+  flex-shrink: 0;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: #32642D;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(50, 100, 45, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(50, 100, 45, 0.3);
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Hide native date and time inputs */
+.date-input-hidden,
+.time-input-hidden {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Hide file input */
+.file-input-hidden {
+  display: none;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: linear-gradient(135deg, #c9e4b8 0%, #C8FFC8 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  z-index: 10;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.nav-btn ion-icon {
+  font-size: 28px;
+  color: #2d3436;
+}
+
+.nav-btn.active {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn.active ion-icon {
+  color: #32642D;
+}
+
+/* Fingerprint Button in Navbar */
+.nav-btn-fingerprint {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(ellipse at 30% 30%, #e6f5da 0%, #d7efc9 60%, #c9e4b8 100%);
+  border: 3px solid rgba(127, 176, 105, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 35px;
+}
+
+.nav-btn-fingerprint:not(:disabled):active {
+  transform: scale(0.92);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn-fingerprint:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-btn-fingerprint ion-icon {
+  font-size: 32px;
+  color: #344e41;
+}
+
+/* Responsive adjustments */
+@media (max-width: 360px) {
+  .form-card {
+    padding: 20px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .submit-btn {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .nav-btn-fingerprint {
+    width: 56px;
+    height: 56px;
+  }
+
+  .nav-btn-fingerprint ion-icon {
+    font-size: 28px;
+  }
+}
+

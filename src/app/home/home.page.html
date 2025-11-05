@@ -1,0 +1,203 @@
+<!-- home.page.html -->
+<ion-content [fullscreen]="true" class="home-content">
+  <div class="main-container">
+
+    <!-- Header Section -->
+    <div class="header-section">
+      <div class="company-info">
+        <div class="company-badge">PT. Sintas Kurama Perdana</div>
+        <div class="greeting">{{ greeting }}, {{ employeeName }}</div>
+      </div>
+      <button class="profile-pic" aria-label="Buka profil">
+        <img [src]="employee?.profileImage || 'assets/icon/pp.jpg'" alt="Foto Profil" />
+      </button>
+    </div>
+
+    <!-- Date and Time Card -->
+    <section class="date-time-card" aria-label="Ringkasan hari ini">
+      <div class="date-header">
+        <span>Hari Ini :</span>
+        <span class="date-text">{{ currentDate }}</span>
+      </div>
+
+      <div class="shift-info-summary" *ngIf="shift">
+        <div class="summary-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <span>{{ shift.name }}</span>
+        </div>
+        <div class="summary-item">
+          <ion-icon name="people-outline"></ion-icon>
+          <span>{{ getWorkGroup() }}</span>
+        </div>
+      </div>
+
+      <div class="time-info">
+        <div class="time-item">
+          <div class="time-icon">
+            <span class="icon-circle">
+              <ion-icon name="log-in" class="icon-green"></ion-icon>
+            </span>
+          </div>
+          <div class="time-details">
+            <div class="time-label">Jam Masuk</div>
+            <div class="time-value">{{ checkInTime }}</div>
+          </div>
+        </div>
+
+        <div class="time-item">
+          <div class="time-icon">
+            <span class="icon-circle">
+              <ion-icon name="log-out" class="icon-green"></ion-icon>
+            </span>
+          </div>
+          <div class="time-details">
+            <div class="time-label">Jam Pulang</div>
+            <div class="time-value">{{ checkOutTime }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Informasi -->
+    <section class="menu-section" aria-label="Menu Informasi">
+      <div class="menu-title">Menu Informasi</div>
+      <div class="menu-buttons">
+        <div class="menu-item">
+          <button class="menu-btn" aria-label="Tukar shift">
+            <ion-icon name="people-circle-outline"></ion-icon>
+          </button>
+          <span class="menu-label">Tukar Shift</span>
+        </div>
+        <div class="menu-item">
+          <button class="menu-btn" aria-label="Lembur" routerLink="/lembur">
+            <ion-icon name="hourglass-outline"></ion-icon>
+          </button>
+          <span class="menu-label">Lembur</span>
+        </div>
+        <div class="menu-item">
+          <button class="menu-btn" aria-label="izin">
+            <ion-icon name="clipboard-outline"></ion-icon>
+          </button>
+          <span class="menu-label">Izin</span>
+        </div>
+        <div class="menu-item">
+          <button class="menu-btn" aria-label="informasi">
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </button>
+          <span class="menu-label">Informasi</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Informasi Jadwal Kerja -->
+    <section class="schedule-info-section" aria-label="Informasi Jadwal Kerja">
+      <div class="schedule-info-card">
+        <div class="schedule-header">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <span class="schedule-title">Jadwal Kerja Hari Ini</span>
+        </div>
+        <div class="schedule-details">
+          <div class="schedule-item">
+            <div class="schedule-label">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>Shift</span>
+            </div>
+            <div class="schedule-value">{{ shift?.name || '-' }}</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-label">
+              <ion-icon name="people-outline"></ion-icon>
+              <span>Grup Kerja</span>
+            </div>
+            <div class="schedule-value">{{ getWorkGroup() }}</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-label">
+              <ion-icon name="log-in-outline"></ion-icon>
+              <span>Waktu Masuk</span>
+            </div>
+            <div class="schedule-value">{{ checkInTime }}</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-label">
+              <ion-icon name="log-out-outline"></ion-icon>
+              <span>Waktu Pulang</span>
+            </div>
+            <div class="schedule-value">{{ checkOutTime }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Absensi Terakhir -->
+    <section class="absence-section" aria-label="Absensi Terakhir">
+      <div class="absence-header">
+        <div class="absence-title">Absensi Terakhir</div>
+        <button class="view-all-btn" routerLink="/riwayat" aria-label="Lihat semua riwayat">
+          <span>Lihat Semua</span>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
+      </div>
+      <div class="absence-card">
+        <div class="attendance-list" *ngIf="recentAttendanceHistory.length > 0; else noAttendance">
+          <div class="attendance-item" *ngFor="let attendance of recentAttendanceHistory">
+            <div class="attendance-date">
+              <span>{{ formatAttendanceDate(attendance.date) }}</span>
+            </div>
+            <div class="attendance-times">
+              <div class="time-block time-block-checkin">
+                <div class="time-icon-box">
+                  <ion-icon name="log-in-outline" class="time-icon-white"></ion-icon>
+                </div>
+                <div class="time-block-content">
+                  <div class="time-label">Jam Masuk</div>
+                  <div class="time-value-large">{{ formatAttendanceTime(attendance.checkIn) }}</div>
+                </div>
+              </div>
+              <div class="time-block time-block-checkout">
+                <div class="time-icon-box">
+                  <ion-icon name="log-out-outline" class="time-icon-white"></ion-icon>
+                </div>
+                <div class="time-block-content">
+                  <div class="time-label">Jam Pulang</div>
+                  <div class="time-value-large">{{ formatAttendanceTime(attendance.checkOut) }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #noAttendance>
+          <div class="no-attendance">
+            <ion-icon name="document-text-outline"></ion-icon>
+            <p>Belum ada data absensi</p>
+          </div>
+        </ng-template>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Navigasi bawah">
+    <button class="nav-btn active" aria-label="Beranda">
+      <ion-icon name="home"></ion-icon>
+    </button>
+    <button routerLink="/notifikasi" class="nav-btn" aria-label="Notifikasi">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </button>
+    <button class="nav-btn-fingerprint" 
+            aria-label="Absen dengan sidik jari"
+            (click)="handleFingerprintClick()"
+            [disabled]="!canCheckIn && !canCheckOut"
+            [ngClass]="{'can-check-in': canCheckIn, 'can-check-out': canCheckOut}">
+      <ion-icon name="finger-print"></ion-icon>
+    </button>
+    <button routerLink="/riwayat" class="nav-btn" aria-label="Riwayat">
+      <ion-icon name="time-outline"></ion-icon>
+    </button>
+    <button routerLink="/profil" class="nav-btn" aria-label="Profil">
+      <ion-icon name="person-outline"></ion-icon>
+    </button>
+  </nav>
+
+</ion-content>

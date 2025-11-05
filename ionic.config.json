@@ -1,0 +1,7 @@
+{
+  "name": "SintasApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

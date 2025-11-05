@@ -1,0 +1,99 @@
+<ion-content [fullscreen]="true" class="profil-content">
+  <div class="main-container">
+    
+    <!-- Header Section with Profile Picture -->
+    <div class="profile-header">
+      <div class="profile-picture-section">
+        <div class="profile-picture-wrapper">
+          <img [src]="employee?.profileImage || 'assets/icon/pp.jpg'" alt="Foto Profil" class="profile-picture-large" />
+        </div>
+        <div class="profile-name-section">
+          <h2 class="profile-name">{{ employee?.name || 'Nama Karyawan' }}</h2>
+          <button class="edit-name-btn" (click)="editName()" aria-label="Edit nama">
+            <ion-icon name="create-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personal Information Card -->
+    <section class="info-section">
+      <h3 class="info-title">Informasi Pribadi</h3>
+      
+      <div class="info-card">
+        <!-- ID Pegawai -->
+        <div class="info-item">
+          <div class="info-icon-wrapper">
+            <ion-icon name="id-card" class="info-icon"></ion-icon>
+          </div>
+          <div class="info-content">
+            <div class="info-label">ID Pegawai</div>
+            <div class="info-value">{{ formatEmployeeId(employee?.id) }}</div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="info-item editable" (click)="editField('email')">
+          <div class="info-icon-wrapper">
+            <ion-icon name="mail" class="info-icon"></ion-icon>
+          </div>
+          <div class="info-content">
+            <div class="info-label">Email</div>
+            <div class="info-value">{{ employee?.email || 'example@gmail.com' }}</div>
+          </div>
+        </div>
+
+        <!-- No Telepon -->
+        <div class="info-item editable" (click)="editField('phone')">
+          <div class="info-icon-wrapper">
+            <ion-icon name="call" class="info-icon"></ion-icon>
+          </div>
+          <div class="info-content">
+            <div class="info-label">No Telepon</div>
+            <div class="info-value">{{ employee?.phone || '08123456789' }}</div>
+          </div>
+        </div>
+
+        <!-- Alamat -->
+        <div class="info-item editable" (click)="editField('address')">
+          <div class="info-icon-wrapper">
+            <ion-icon name="location" class="info-icon"></ion-icon>
+          </div>
+          <div class="info-content">
+            <div class="info-label">Alamat</div>
+            <div class="info-value">{{ employee?.address || 'New York, Jl. Ironman 123' }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logout Button -->
+    <button class="logout-btn" (click)="logout()" aria-label="Keluar">
+      Log out
+    </button>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Navigasi bawah">
+    <button class="nav-btn" aria-label="Beranda" routerLink="/home">
+      <ion-icon name="home-outline"></ion-icon>
+    </button>
+    <button class="nav-btn" aria-label="Notifikasi" routerLink="/notifikasi">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </button>
+    <button class="nav-btn-fingerprint" 
+            aria-label="Absen dengan sidik jari"
+            (click)="goToHome()"
+            [disabled]="false">
+      <ion-icon name="finger-print"></ion-icon>
+    </button>
+    <button class="nav-btn" aria-label="Riwayat" routerLink="/riwayat">
+      <ion-icon name="time-outline"></ion-icon>
+    </button>
+    <button class="nav-btn active" aria-label="Profil">
+      <ion-icon name="person"></ion-icon>
+    </button>
+  </nav>
+
+</ion-content>

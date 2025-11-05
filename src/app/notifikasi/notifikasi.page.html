@@ -1,0 +1,97 @@
+<ion-content [fullscreen]="true" class="notifikasi-content">
+  <div class="main-container">
+    
+    <!-- Header Section -->
+    <div class="header-section">
+      <button class="back-btn" (click)="goToHome()" aria-label="Kembali">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      <div class="header-center">
+        <h1 class="page-title">Notifikasi</h1>
+        <p class="notification-summary" *ngIf="unreadCount > 0">
+          Anda Memiliki {{ unreadCount }} notifikasi belum dibaca
+        </p>
+        <p class="notification-summary" *ngIf="unreadCount === 0">
+          Tidak ada notifikasi baru
+        </p>
+      </div>
+      <div class="bell-icon-wrapper">
+        <ion-icon name="notifications" class="bell-icon"></ion-icon>
+        <span class="notification-badge" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
+      </div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="filter-section">
+      <button 
+        class="filter-btn" 
+        [class.active]="filterType === 'all'"
+        (click)="setFilter('all')"
+        aria-label="Semua">
+        Semua
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="filterType === 'unread'"
+        (click)="setFilter('unread')"
+        aria-label="Belum dibaca">
+        Belum dibaca ({{ unreadCount }})
+      </button>
+    </div>
+
+    <!-- Notification List -->
+    <div class="notification-list">
+      <div *ngFor="let group of groupedNotifications" class="notification-group">
+        <!-- Date Label -->
+        <div class="date-label">
+          <span class="date-pill">{{ group.dateLabel }}</span>
+        </div>
+
+        <!-- Notifications in this group -->
+        <div *ngFor="let notification of group.notifications" 
+             class="notification-card"
+             (click)="markAsRead(notification.id)"
+             [class.unread]="!notification.read">
+          <div class="notification-icon-box">
+            <ion-icon name="checkmark" class="notification-icon"></ion-icon>
+          </div>
+          <div class="notification-content">
+            <h3 class="notification-title">{{ notification.title }}</h3>
+            <p class="notification-description">{{ notification.description }}</p>
+            <div class="notification-time">{{ formatTime(notification.time) }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="filteredNotifications.length === 0" class="empty-state">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <p>Tidak ada notifikasi</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Navigasi bawah">
+    <button class="nav-btn" aria-label="Beranda" routerLink="/home">
+      <ion-icon name="home-outline"></ion-icon>
+    </button>
+    <button class="nav-btn active" aria-label="Notifikasi">
+      <ion-icon name="notifications"></ion-icon>
+    </button>
+    <button class="nav-btn-fingerprint" 
+            aria-label="Absen dengan sidik jari"
+            (click)="goToHome()"
+            [disabled]="false">
+      <ion-icon name="finger-print"></ion-icon>
+    </button>
+    <button routerLink="/riwayat" class="nav-btn" aria-label="Riwayat">
+      <ion-icon name="time-outline"></ion-icon>
+    </button>
+    <button routerLink="/profil" class="nav-btn" aria-label="Profil">
+      <ion-icon name="person-outline"></ion-icon>
+    </button>
+  </nav>
+
+</ion-content>

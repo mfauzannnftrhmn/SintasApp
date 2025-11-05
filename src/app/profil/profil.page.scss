@@ -1,0 +1,333 @@
+.profil-content {
+    --background: linear-gradient(180deg, #72AB72 30%, #C8FFC8 100%);
+}
+
+/* Concave Curved Header Background - Using bg.svg */
+.profil-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 207px;
+  background-image: url('/assets/images/bg.svg');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.main-container {
+  padding: 0;
+  padding-bottom: 100px;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Profile Header Section */
+.profile-header {
+  position: relative;
+  padding: 60px 16px 50px 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  z-index: 1;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  z-index: 2;
+}
+
+.back-btn ion-icon {
+  font-size: 24px;
+  color: #32642D;
+}
+
+.profile-picture-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.profile-picture-wrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+}
+
+.profile-picture-large {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-name-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+}
+
+.edit-name-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.edit-name-btn ion-icon {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+/* Info Section */
+.info-section {
+  padding: 0 16px;
+  margin-top: -10px;
+  position: relative;
+  z-index: 1;
+}
+
+.info-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3436;
+  margin: 0 0 16px 0;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-item:first-child {
+  padding-top: 0;
+}
+
+.info-item.editable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.info-item.editable:active {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+}
+
+.info-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #2d6a4f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(45, 106, 79, 0.2);
+}
+
+.info-icon {
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.info-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #636e72;
+}
+
+.info-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.edit-icon-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.edit-icon-btn ion-icon {
+  font-size: 18px;
+  color: #2d6a4f;
+}
+
+/* Logout Button */
+.logout-btn {
+  width: calc(100% - 32px);
+  margin: 32px 16px 0 16px;
+  padding: 16px;
+  background: #32642D;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(50, 100, 45, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.logout-btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(50, 100, 45, 0.3);
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: linear-gradient(135deg, #c9e4b8 0%, #C8FFC8 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.nav-btn ion-icon {
+  font-size: 28px;
+  color: #2d3436;
+}
+
+.nav-btn.active {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn.active ion-icon {
+  color: #32642D;
+}
+
+/* Fingerprint Button in Navbar */
+.nav-btn-fingerprint {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(ellipse at 30% 30%, #e6f5da 0%, #d7efc9 60%, #c9e4b8 100%);
+  border: 3px solid rgba(127, 176, 105, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 35px;
+}
+
+.nav-btn-fingerprint:not(:disabled):active {
+  transform: scale(0.92);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn-fingerprint:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-btn-fingerprint ion-icon {
+  font-size: 32px;
+  color: #344e41;
+}
+
+/* Small devices tweaks */
+@media (max-width: 360px) {
+  .profile-name { font-size: 18px; }
+  .profile-picture-wrapper { width: 100px; height: 100px; }
+  .info-title { font-size: 16px; }
+  .nav-btn-fingerprint { width: 56px; height: 56px; }
+  .nav-btn-fingerprint ion-icon { font-size: 28px; }
+  .info-icon-wrapper { width: 40px; height: 40px; }
+  .info-icon { font-size: 20px; }
+}
+
